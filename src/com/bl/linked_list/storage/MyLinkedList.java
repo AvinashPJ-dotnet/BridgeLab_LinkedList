@@ -53,6 +53,18 @@ public class MyLinkedList {
         return tail;
     }
 
+    public int search(INode searchNode) {
+        INode tempNode = head;
+        int countPosition = 0;
+        while (tempNode != null) {
+            if (tempNode == searchNode)
+                return countPosition;
+            tempNode = tempNode.getNext();
+            countPosition++;
+        }
+        return -1;
+    }
+
     public void printMyNode() {
         StringBuffer myNode = new StringBuffer("My Node: ");
         INode tempNode = head;
