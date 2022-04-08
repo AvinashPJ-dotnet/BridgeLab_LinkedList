@@ -36,6 +36,7 @@ public class MyLinkedListTest {
         Assertions.assertTrue(result);
     }
 
+    //UC4: insert between given node
     @Test
     public void given3NumbersWhenInsertSecondInBetweenShouldPassLinkedListResult() {
         MyNode<Object> myFirstNode = new MyNode<>(50);
@@ -50,6 +51,25 @@ public class MyLinkedListTest {
         boolean result = myLinkedList.head.equals(myFirstNode) &&
                 myLinkedList.head.getNext().equals(mySecondNode)&&
                 myLinkedList.tail.equals(myThirdNode);
+        Assertions.assertTrue(result);
+    }
+
+    //UC5: pop first element
+    @Test
+    public void given3NumbersWhenPopFirstElementDeleteShouldPassLinkedListResult() {
+        MyNode<Object> myFirstNode = new MyNode<>(50);
+        MyNode<Object> mySecondNode = new MyNode<>(30);
+        MyNode<Object> myThirdNode = new MyNode<>(70);
+        MyLinkedList myLinkedList = new MyLinkedList();
+        myLinkedList.add(myFirstNode);
+        myLinkedList.append(mySecondNode);
+        myLinkedList.append(myThirdNode);
+        myLinkedList.printMyNode();
+        myLinkedList.pop();
+        myLinkedList.printMyNode();
+        boolean result = myLinkedList.head.equals(mySecondNode) &&
+                myLinkedList.head.getNext().equals(myLinkedList.tail);
+
         Assertions.assertTrue(result);
     }
 }
