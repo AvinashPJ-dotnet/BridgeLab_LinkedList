@@ -21,6 +21,17 @@ public class MyLinkedList {
         }
     }
 
+    public void append(INode newNode) {
+        if (head == null)
+            head = newNode;
+        if (tail == null)
+            tail = newNode;
+        else {
+            tail.setNext(newNode);
+            tail = newNode;
+        }
+    }
+
     public void printMyNode() {
         StringBuffer myNode = new StringBuffer("My Node: ");
         INode tempNode = head;
