@@ -75,6 +75,14 @@ public class MyLinkedList {
         return tail;
     }
 
+
+    public boolean isEmpty(){
+        if(head == null){
+            return true;
+        }
+        return false;
+    }
+
     public void remove(INode removeNode) {
         INode tempNode = head, prev = null;
 
@@ -122,6 +130,10 @@ public class MyLinkedList {
     public void printMyNode() {
         StringBuffer myNode = new StringBuffer("My Node: ");
         INode tempNode = head;
+
+        if(head == null){
+            return;
+        }
         while (tempNode.getNext() != null) {
             myNode.append(tempNode.getKey());
             if (!tempNode.equals(tail))
