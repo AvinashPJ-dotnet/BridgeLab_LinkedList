@@ -38,6 +38,28 @@ public class MyLinkedList {
         newNode.setNext(tempNode);
     }
 
+    public void addSortedList(INode newNode) {
+        INode current;
+
+        if (head == null) {
+            newNode.setNext(null);
+            head = newNode;
+            return;
+        }
+        if (head.getKey().toString().compareTo(newNode.getKey().toString()) >= 0) {
+            newNode.setNext(head);
+            head = newNode;
+        } else {
+            current = head;
+            while (current.getNext() != null && current.getNext().getKey().toString().compareTo(newNode.getKey().toString()) <= 0) {
+                current = current.getNext();
+            }
+            newNode.setNext(current.getNext());
+            current.setNext(newNode);
+            tail=newNode;
+        }
+    }
+
     public INode pop() {
         INode tempNode = head;
         head = head.getNext();
@@ -65,15 +87,13 @@ public class MyLinkedList {
             prev = tempNode;
             tempNode = tempNode.getNext();
         }
-
+        if (tempNode == null)
+            return;
         if (tempNode.getNext() == null && tempNode == removeNode) {
             prev.setNext(null);
             tail = prev; // Changed tail
             return;
         }
-        if (tempNode == null)
-            return;
-
         prev.setNext(tempNode.getNext());
     }
 

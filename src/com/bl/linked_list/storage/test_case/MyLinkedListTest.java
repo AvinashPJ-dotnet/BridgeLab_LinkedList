@@ -185,4 +185,23 @@ public class MyLinkedListTest {
 
         Assertions.assertTrue(result);
     }
+
+    //UC10: insert sorted list
+    @Test
+    public void given4NumbersWhenAddSortedListShouldPassLinkedListResult() {
+        MyNode<Object> myFirstNode = new MyNode<>(50);
+        MyNode<Object> mySecondNode = new MyNode<>(40);
+        MyNode<Object> myThirdNode = new MyNode<>(30);
+        MyNode<Object> myForthNode = new MyNode<>(70);
+        MyLinkedList myLinkedList = new MyLinkedList();
+        myLinkedList.addSortedList(myFirstNode);
+        myLinkedList.addSortedList(mySecondNode);
+        myLinkedList.addSortedList(myThirdNode);
+        myLinkedList.addSortedList(myForthNode);
+        myLinkedList.printMyNode();
+        boolean result = myLinkedList.head.equals(myThirdNode) &&
+                myLinkedList.tail.equals(myForthNode);
+
+        Assertions.assertTrue(result);
+    }
 }
