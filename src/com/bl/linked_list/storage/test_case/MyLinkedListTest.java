@@ -46,10 +46,10 @@ public class MyLinkedListTest {
         myLinkedList.add(myFirstNode);
         myLinkedList.append(myThirdNode);
         myLinkedList.printMyNode();
-        myLinkedList.insert(myFirstNode,mySecondNode);
+        myLinkedList.insert(myFirstNode, mySecondNode);
         myLinkedList.printMyNode();
         boolean result = myLinkedList.head.equals(myFirstNode) &&
-                myLinkedList.head.getNext().equals(mySecondNode)&&
+                myLinkedList.head.getNext().equals(mySecondNode) &&
                 myLinkedList.tail.equals(myThirdNode);
         Assertions.assertTrue(result);
     }
@@ -102,12 +102,87 @@ public class MyLinkedListTest {
         myLinkedList.add(myFirstNode);
         myLinkedList.append(mySecondNode);
         myLinkedList.append(myThirdNode);
-        int pos=myLinkedList.search(mySecondNode);
+        int pos = myLinkedList.search(mySecondNode);
         myLinkedList.printMyNode();
         System.out.println(pos);
 //        boolean result = myLinkedList.head.equals(myFirstNode) &&
 //                myLinkedList.head.getNext().equals(mySecondNode);
 //
 //        Assertions.assertTrue(result);
+    }
+
+
+    //UC8: delete/remove specific element
+    @Test
+    public void given3NumbersWhenDeleteSpecificElementGetShouldPassLinkedListResult() {
+        MyNode<Object> myFirstNode = new MyNode<>(50);
+        MyNode<Object> mySecondNode = new MyNode<>(30);
+        MyNode<Object> myThirdNode = new MyNode<>(40);
+        MyNode<Object> myForthNode = new MyNode<>(70);
+        MyLinkedList myLinkedList = new MyLinkedList();
+        myLinkedList.add(myFirstNode);
+        myLinkedList.append(mySecondNode);
+        myLinkedList.append(myThirdNode);
+        myLinkedList.append(myForthNode);
+
+        myLinkedList.remove(myForthNode);
+        myLinkedList.printMyNode();
+        boolean result = myLinkedList.head.equals(myFirstNode) &&
+                myLinkedList.head.getNext().equals(mySecondNode) &&
+                myLinkedList.tail.equals(myThirdNode);
+
+        Assertions.assertTrue(result);
+    }
+
+
+    //UC8: delete/remove First element
+    @Test
+    public void given3NumbersWhenDeleteSpecificFirstElementGetAndSizeMust3AnsSearchElementFoundShouldPassLinkedListResult() {
+        MyNode<Object> myFirstNode = new MyNode<>(50);
+        MyNode<Object> mySecondNode = new MyNode<>(30);
+        MyNode<Object> myThirdNode = new MyNode<>(40);
+        MyNode<Object> myForthNode = new MyNode<>(70);
+        MyLinkedList myLinkedList = new MyLinkedList();
+        myLinkedList.add(myFirstNode);
+        myLinkedList.append(mySecondNode);
+        myLinkedList.append(myThirdNode);
+        myLinkedList.append(myForthNode);
+
+        int pos = myLinkedList.search(myFirstNode);
+        myLinkedList.remove(myFirstNode);
+        int size = myLinkedList.size();
+        myLinkedList.printMyNode();
+        boolean result = myLinkedList.head.equals(mySecondNode) &&
+                myLinkedList.head.getNext().equals(myThirdNode) &&
+                myLinkedList.tail.equals(myForthNode) && size == 3 && pos == 0;
+
+        Assertions.assertTrue(result);
+    }
+
+
+    //UC8: delete/remove First element
+    @Test
+    public void given3NumbersWhenDeleteSpecificMiddleElementGetShouldPassLinkedListResult() {
+        MyNode<Object> myFirstNode = new MyNode<>(50);
+        MyNode<Object> mySecondNode = new MyNode<>(30);
+        MyNode<Object> myThirdNode = new MyNode<>(40);
+        MyNode<Object> myForthNode = new MyNode<>(70);
+        MyLinkedList myLinkedList = new MyLinkedList();
+        myLinkedList.add(myFirstNode);
+        myLinkedList.append(mySecondNode);
+        myLinkedList.append(myThirdNode);
+        myLinkedList.append(myForthNode);
+        myLinkedList.printMyNode();
+
+        int pos = myLinkedList.search(mySecondNode);
+        myLinkedList.remove(mySecondNode);
+        myLinkedList.remove(myThirdNode);
+
+        int size = myLinkedList.size();
+        myLinkedList.printMyNode();
+        boolean result = myLinkedList.head.equals(myFirstNode) &&
+                myLinkedList.tail.equals(myForthNode) && size == 2 && pos == 1;
+
+        Assertions.assertTrue(result);
     }
 }

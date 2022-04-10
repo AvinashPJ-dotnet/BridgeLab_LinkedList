@@ -53,6 +53,30 @@ public class MyLinkedList {
         return tail;
     }
 
+    public void remove(INode removeNode) {
+        INode tempNode = head, prev = null;
+
+        if (tempNode != null && tempNode == removeNode) {
+            head = tempNode.getNext(); // Changed head
+            return;
+        }
+
+        while (tempNode != null && tempNode != removeNode) {
+            prev = tempNode;
+            tempNode = tempNode.getNext();
+        }
+
+        if (tempNode.getNext() == null && tempNode == removeNode) {
+            prev.setNext(null);
+            tail = prev; // Changed tail
+            return;
+        }
+        if (tempNode == null)
+            return;
+
+        prev.setNext(tempNode.getNext());
+    }
+
     public int search(INode searchNode) {
         INode tempNode = head;
         int countPosition = 0;
@@ -63,6 +87,16 @@ public class MyLinkedList {
             countPosition++;
         }
         return -1;
+    }
+
+    public int size() {
+        INode temp = head;
+        int count = 0;
+        while (temp != null) {
+            count++;
+            temp = temp.getNext();
+        }
+        return count;
     }
 
     public void printMyNode() {
